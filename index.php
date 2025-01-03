@@ -1,32 +1,124 @@
-
-<?php
-
-    //FAITH_COMMITS
-
-    //declaring variables
-
-    $string = "Faith";
-    $number = 25;
-    $double = 30.4;
-    $boolean = true;
-    $normal_array = array(2,4,6,8,10);
-    $associative_array = array("firstName"=>"Rebaone" , "lastName"=>"Matlaba");
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>NWK Young System ISH</title>
+    <title>Testing development</title>
 </head>
 <body>
-    
-    <h3> PHP BASICS </h3>
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+        Name: <input type="text" name="fname">
+        <input type="submit">
+    </form>
 
+    <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = htmlspecialchars($_REQUEST['fname']);
+        if (empty($name)) {
+            echo "Name is empty";
+        } else {
+            echo $name;
+        }
+        }
+    ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <?php
+
+        $answer = "Earth";
+        $bool = true;
+        $num = 1;
+
+        switch ($answer) {
+            case "Earth":
+                echo "Correct answer!";
+                $num++;
+                echo $num;
+            case "Mars":
+                echo "Wrong answer! Mars is the 4th planet and is also called the red planet";
+                $num += 10;
+            case "Jupiter":
+                echo "Wrong answer! Jupiter is the biggest planet in our solar system.";
+            default:
+                echo "Wrong answer!";
+        }
+
+        while (!$bool) {
+            echo "It's true";
+        }
+
+        do {
+            $num--;
+            echo $num;
+        } while (!$bool);
+
+        for ($i = 0; $i < 10; $i++) {
+            echo $i;
+        }
+
+        $arr = array(1,2,4,5,55,2);
+        foreach ($arr as $all) {
+            echo $all . " ";
+        }
+        echo "\n";
+
+        $members = array("Peter"=>"35", "Ben"=>"22");
+
+        echo count($members);
+
+        foreach ($members as $x => $y) {
+            echo $x . " " . $y;
+            echo "\n";
+        }
+
+        class Car {
+            public $make;
+            public $speed;
+
+            public function __construct($make, $speed) {
+                $this->make = $make;
+                $this->speed = $speed;
+            }
+        }
+
+        $newCar = new Car("BMW",200);
+
+        foreach ($newCar as $key => $value) {
+            echo "Car: " . $key . ", Speed: " . $value;
+            echo "\n";
+        }
+
+        
+        function message($name) {
+            echo "Hello $name";
+        }
+
+        message("Eduan");
+
+        function sum($num1, $num2) {
+            $val = $num1 + $num2;
+            return $val;
+        }
+
+        echo sum(1,2);
+
+        $car = [
+        "brand"=>"Ford", 
+        "model"=>"Mustang", 
+        "year"=>1964
+        ];
+
+        echo $car["model"];
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $answer = $_POST["answer"];
+        
+            if ($answer == "Earth") {
+               echo "Correct answer!";
+            } else {
+                echo "Wrong answer";
+            }
+        
+        }
+    ?>
 </body>
 </html>
